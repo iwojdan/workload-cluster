@@ -8,9 +8,9 @@ metadata: # kpt-merge: cnos-system/otelcol-deployment
     nephio.org/region: missing
     nephio.org/site-type: missing
   annotations:
-    backends.cnos/remote-metrics: example
-    backends.cnos/remote-logs: example
-    backends.cnos/remote-traces: example
+    backends.cnos/remote-metrics: http://10.254.185.27:9009/api/v1/push
+    backends.cnos/remote-logs: http://10.254.185.27:8200
+    backends.cnos/remote-traces: http://10.254.185.27:4317
     internal.kpt.dev/upstream-identifier: 'opentelemetry.io|OpenTelemetryCollector|cnos-system|otelcol-deployment'
 spec:
   env:
