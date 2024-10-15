@@ -22,5 +22,10 @@ info:
   description: sample package for Cloud Native Observability stack (CNOS) by Orange Poland
 pipeline:
   mutators:
+  - name: PackageVariant.edge-clusters-backends-workload-workload-cluster-cnos-backends..0
+    image: gcr.io/kpt-fn/set-labels:v0.2.0
+    configMap:
+      nephio.org/region: us-west1
+      nephio.org/site-type: edge
   - image: gcr.io/kpt-fn/set-namespace:v0.4.1
     configPath: cm-namespace.yaml
