@@ -4,6 +4,9 @@ metadata: # kpt-merge: /otelcol-daemonset-collector
   name: otelcol-daemonset-collector
   annotations:
     internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|ClusterRole|default|otelcol-daemonset-collector'
+  labels:
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
 rules:
 - apiGroups: [""]
   resources: ["pods", "namespaces", "nodes/stats"]

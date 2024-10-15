@@ -5,6 +5,9 @@ metadata: # kpt-merge: cnos-system/otelcol-daemonset
   namespace: cnos-system
   annotations:
     internal.kpt.dev/upstream-identifier: 'opentelemetry.io|OpenTelemetryCollector|cnos-system|otelcol-daemonset'
+  labels:
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
 spec:
   mode: daemonset
   env:
