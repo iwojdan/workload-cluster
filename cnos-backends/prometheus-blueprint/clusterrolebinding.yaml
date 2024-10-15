@@ -1,0 +1,17 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata: # kpt-merge: /cnos-prometheus-agent
+  name: cnos-prometheus-agent
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|ClusterRoleBinding|default|cnos-prometheus-agent'
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cnos-prometheus-agent
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: cnos-system
+- kind: ServiceAccount
+  name: default
+  namespace: cnos-system

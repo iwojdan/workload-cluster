@@ -1,0 +1,100 @@
+# Source: loki-stack/charts/loki/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata: # kpt-merge: cnos-system/loki
+  labels:
+    app: loki
+  name: loki
+  namespace: cnos-system
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|ServiceAccount|cnos-system|loki'
+automountServiceAccountToken: true
+---
+# Source: loki-stack/charts/promtail/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata: # kpt-merge: cnos-system/loki-promtail
+  name: loki-promtail
+  namespace: cnos-system
+  labels:
+    app.kubernetes.io/name: promtail
+    app.kubernetes.io/instance: loki
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|ServiceAccount|cnos-system|loki-promtail'
+---
+# Source: loki-stack/charts/promtail/templates/clusterrole.yaml
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata: # kpt-merge: /loki-promtail
+  name: loki-promtail
+  labels:
+    app.kubernetes.io/name: promtail
+    app.kubernetes.io/instance: loki
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|ClusterRole|default|loki-promtail'
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  - nodes/proxy
+  - services
+  - endpoints
+  - pods
+  verbs:
+  - get
+  - watch
+  - list
+---
+# Source: loki-stack/charts/promtail/templates/clusterrolebinding.yaml
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata: # kpt-merge: /loki-promtail
+  name: loki-promtail
+  labels:
+    app.kubernetes.io/name: promtail
+    app.kubernetes.io/instance: loki
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|ClusterRoleBinding|default|loki-promtail'
+subjects:
+- kind: ServiceAccount
+  name: loki-promtail
+  namespace: cnos-system
+roleRef:
+  kind: ClusterRole
+  name: loki-promtail
+  apiGroup: rbac.authorization.k8s.io
+---
+# Source: loki-stack/charts/loki/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata: # kpt-merge: cnos-system/loki
+  name: loki
+  namespace: cnos-system
+  labels:
+    app: loki
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|Role|cnos-system|loki'
+rules:
+- apiGroups: ['extensions']
+  resources: ['podsecuritypolicies']
+  verbs: ['use']
+  resourceNames: [loki]
+---
+# Source: loki-stack/charts/loki/templates/rolebinding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata: # kpt-merge: cnos-system/loki
+  name: loki
+  namespace: cnos-system
+  labels:
+    app: loki
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|RoleBinding|cnos-system|loki'
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: loki
+subjects:
+- kind: ServiceAccount
+  name: loki

@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata: # kpt-merge: cnos-system/cnos-prometheus-agent-external
+  name: cnos-prometheus-agent-external
+  namespace: cnos-system
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/port: '9090'
+    internal.kpt.dev/upstream-identifier: '|Service|cnos-system|cnos-prometheus-agent-external'
+spec:
+  selector:
+    app: prometheus-server
+  type: LoadBalancer
+  ports:
+  - port: 8080
+    targetPort: 9090
+    nodePort: 30333
+---
+apiVersion: v1
+kind: Service
+metadata: # kpt-merge: cnos-system/cnos-prometheus-agent-local
+  name: cnos-prometheus-agent-local
+  namespace: cnos-system
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/port: '9090'
+    internal.kpt.dev/upstream-identifier: '|Service|cnos-system|cnos-prometheus-agent-local'
+spec:
+  selector:
+    app: prometheus-server
+  type: ClusterIP
+  ports:
+  - port: 8080
+    targetPort: 9090
