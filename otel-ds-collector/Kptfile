@@ -1,0 +1,26 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata: # kpt-merge: /otel-ds-collector
+  name: otel-ds-collector
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: 'kpt.dev|Kptfile|default|otel-ds-collector'
+upstream:
+  type: git
+  git:
+    repo: https://github.com/matysiaq/catalog-orange-packages.git
+    directory: cnos-full-replication/otelcol-daemonset-workload
+    ref: cnos-full-replication/otelcol-daemonset-workload/v2.0.0
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/matysiaq/catalog-orange-packages.git
+    directory: cnos-full-replication/otelcol-daemonset-workload
+    ref: cnos-full-replication/otelcol-daemonset-workload/v2.0.0
+    commit: a9d70d99e0c943b789ae20f50b20ab4ea265f4a6
+info:
+  description: sample kpt package to deploy otel daemonset collector to workload cluster
+pipeline:
+  mutators:
+  - image: gcr.io/kpt-fn/set-namespace:v0.4.1
+    configPath: cm-namespace.yaml
