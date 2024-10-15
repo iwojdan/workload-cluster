@@ -4,9 +4,9 @@ metadata: # kpt-merge: cnos-system/otelcol-deployment
   name: otelcol-deployment
   namespace: cnos-system
   labels:
-    info.cnos/cluster-name: example
-    nephio.org/region: missing
-    nephio.org/site-type: missing
+    info.cnos/cluster-name: workload-cluster
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   annotations:
     backends.cnos/remote-metrics: http://10.254.185.27:9009/api/v1/push
     backends.cnos/remote-logs: http://10.254.185.27:8200

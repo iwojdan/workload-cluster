@@ -6,8 +6,8 @@ data:
 kind: Secret
 metadata: # kpt-merge: cnos-system/cnos-elasticsearch-remote-certs
   labels:
-    nephio.org/region: ""
-    nephio.org/site-type: management
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   name: cnos-elasticsearch-remote-certs
   namespace: cnos-system
   annotations:
