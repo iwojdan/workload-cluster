@@ -1,0 +1,26 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata: # kpt-merge: /otel-operator
+  name: otel-operator
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: 'kpt.dev|Kptfile|default|otel-operator'
+upstream:
+  type: git
+  git:
+    repo: https://github.com/matysiaq/catalog-orange-packages.git
+    directory: cnos-no-replication/otel-operator
+    ref: cnos-no-replication/otel-operator/v2.0.0
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/matysiaq/catalog-orange-packages.git
+    directory: cnos-no-replication/otel-operator
+    ref: cnos-no-replication/otel-operator/v2.0.0
+    commit: c0b105c321c3434bd04d345d9ea7c537859192c3
+info:
+  description: Sample kpt package for Open Telemetry Operator
+pipeline:
+  mutators:
+  - image: gcr.io/kpt-fn/set-namespace:v0.4.1
+    configPath: cm-namespace.yaml
