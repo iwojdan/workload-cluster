@@ -4,6 +4,8 @@ kind: ServiceAccount
 metadata: # kpt-merge: cnos-system/loki
   labels:
     app: loki
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   name: loki
   namespace: cnos-system
   annotations:
@@ -19,6 +21,8 @@ metadata: # kpt-merge: cnos-system/loki-promtail
   labels:
     app.kubernetes.io/name: promtail
     app.kubernetes.io/instance: loki
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   annotations:
     internal.kpt.dev/upstream-identifier: '|ServiceAccount|cnos-system|loki-promtail'
 ---
@@ -30,6 +34,8 @@ metadata: # kpt-merge: /loki-promtail
   labels:
     app.kubernetes.io/name: promtail
     app.kubernetes.io/instance: loki
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   annotations:
     internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|ClusterRole|default|loki-promtail'
 rules:
@@ -54,6 +60,8 @@ metadata: # kpt-merge: /loki-promtail
   labels:
     app.kubernetes.io/name: promtail
     app.kubernetes.io/instance: loki
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   annotations:
     internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|ClusterRoleBinding|default|loki-promtail'
 subjects:
@@ -73,6 +81,8 @@ metadata: # kpt-merge: cnos-system/loki
   namespace: cnos-system
   labels:
     app: loki
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   annotations:
     internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|Role|cnos-system|loki'
 rules:
@@ -89,6 +99,8 @@ metadata: # kpt-merge: cnos-system/loki
   namespace: cnos-system
   labels:
     app: loki
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   annotations:
     internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|RoleBinding|cnos-system|loki'
 roleRef:

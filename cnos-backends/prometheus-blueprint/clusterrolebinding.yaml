@@ -4,6 +4,9 @@ metadata: # kpt-merge: /cnos-prometheus-agent
   name: cnos-prometheus-agent
   annotations:
     internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|ClusterRoleBinding|default|cnos-prometheus-agent'
+  labels:
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole

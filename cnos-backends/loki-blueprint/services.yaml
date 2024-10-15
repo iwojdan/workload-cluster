@@ -5,6 +5,8 @@ metadata: # kpt-merge: cnos-system/loki-headless
   namespace: cnos-system
   labels:
     app: loki
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   annotations:
     internal.kpt.dev/upstream-identifier: '|Service|cnos-system|loki-headless'
 spec:
@@ -16,6 +18,8 @@ spec:
     targetPort: http-metrics
   selector:
     app: loki
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
 ---
 apiVersion: v1
 kind: Service
@@ -24,6 +28,8 @@ metadata: # kpt-merge: cnos-system/loki-memberlist
   namespace: cnos-system
   labels:
     app: loki
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   annotations:
     internal.kpt.dev/upstream-identifier: '|Service|cnos-system|loki-memberlist'
 spec:
@@ -37,6 +43,8 @@ spec:
     protocol: TCP
   selector:
     app: loki
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
 ---
 apiVersion: v1
 kind: Service
@@ -45,6 +53,8 @@ metadata: # kpt-merge: cnos-system/loki
   namespace: cnos-system
   labels:
     app: loki
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   annotations:
     internal.kpt.dev/upstream-identifier: '|Service|cnos-system|loki'
 spec:
@@ -56,3 +66,5 @@ spec:
     targetPort: http-metrics
   selector:
     app: loki
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge

@@ -7,6 +7,8 @@ metadata: # kpt-merge: cnos-system/loki-loki-stack
   labels:
     app: loki-stack
     grafana_datasource: "1"
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   annotations:
     internal.kpt.dev/upstream-identifier: '|ConfigMap|cnos-system|loki-loki-stack'
 data:
@@ -29,6 +31,8 @@ metadata: # kpt-merge: /loki-loki-stack-test
   name: loki-loki-stack-test
   labels:
     app: loki-stack
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   annotations:
     internal.kpt.dev/upstream-identifier: '|ConfigMap|default|loki-loki-stack-test'
   namespace: cnos-system

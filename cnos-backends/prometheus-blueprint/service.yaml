@@ -7,9 +7,14 @@ metadata: # kpt-merge: cnos-system/cnos-prometheus-agent-external
     prometheus.io/scrape: 'true'
     prometheus.io/port: '9090'
     internal.kpt.dev/upstream-identifier: '|Service|cnos-system|cnos-prometheus-agent-external'
+  labels:
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
 spec:
   selector:
     app: prometheus-server
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   type: LoadBalancer
   ports:
   - port: 8080
@@ -25,9 +30,14 @@ metadata: # kpt-merge: cnos-system/cnos-prometheus-agent-local
     prometheus.io/scrape: 'true'
     prometheus.io/port: '9090'
     internal.kpt.dev/upstream-identifier: '|Service|cnos-system|cnos-prometheus-agent-local'
+  labels:
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
 spec:
   selector:
     app: prometheus-server
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   type: ClusterIP
   ports:
   - port: 8080

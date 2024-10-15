@@ -5,6 +5,8 @@ metadata: # kpt-merge: cnos-system/loki
   namespace: cnos-system
   labels:
     app: loki
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   annotations:
     internal.kpt.dev/upstream-identifier: 'apps|StatefulSet|cnos-system|loki'
 spec:
@@ -13,6 +15,8 @@ spec:
   selector:
     matchLabels:
       app: loki
+      nephio.org/region: us-west1
+      nephio.org/site-type: edge
   serviceName: loki-headless
   updateStrategy:
     type: RollingUpdate
@@ -20,6 +24,8 @@ spec:
     metadata:
       labels:
         app: loki
+        nephio.org/region: us-west1
+        nephio.org/site-type: edge
       annotations:
         prometheus.io/port: http-metrics
         prometheus.io/scrape: "true"

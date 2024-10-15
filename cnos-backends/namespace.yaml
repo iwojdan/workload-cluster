@@ -6,5 +6,7 @@ metadata: # kpt-merge: /cnos-system
     pod-security.kubernetes.io/warn: "privileged"
     pod-security.kubernetes.io/audit: "privileged"
     pod-security.kubernetes.io/enforce: "privileged"
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   annotations:
     internal.kpt.dev/upstream-identifier: '|Namespace|default|cnos-system'

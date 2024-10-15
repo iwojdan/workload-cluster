@@ -7,6 +7,8 @@ metadata: # kpt-merge: cnos-system/loki-promtail
   labels:
     app.kubernetes.io/name: promtail
     app.kubernetes.io/instance: loki
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   annotations:
     internal.kpt.dev/upstream-identifier: 'apps|DaemonSet|cnos-system|loki-promtail'
 spec:
@@ -14,11 +16,15 @@ spec:
     matchLabels:
       app.kubernetes.io/name: promtail
       app.kubernetes.io/instance: loki
+      nephio.org/region: us-west1
+      nephio.org/site-type: edge
   template:
     metadata:
       labels:
         app.kubernetes.io/name: promtail
         app.kubernetes.io/instance: loki
+        nephio.org/region: us-west1
+        nephio.org/site-type: edge
     spec:
       serviceAccountName: loki-promtail
       enableServiceLinks: true

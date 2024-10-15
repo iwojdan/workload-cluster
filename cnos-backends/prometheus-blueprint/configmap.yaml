@@ -4,6 +4,8 @@ metadata: # kpt-merge: cnos-system/cnos-prometheus-conf
   name: cnos-prometheus-conf
   labels:
     name: prometheus-server-conf
+    nephio.org/region: us-west1
+    nephio.org/site-type: edge
   namespace: cnos-system
   annotations:
     internal.kpt.dev/upstream-identifier: '|ConfigMap|cnos-system|cnos-prometheus-conf'
