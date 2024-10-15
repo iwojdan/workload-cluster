@@ -31,6 +31,7 @@ metadata: # kpt-merge: /loki-loki-stack-test
     app: loki-stack
   annotations:
     internal.kpt.dev/upstream-identifier: '|ConfigMap|default|loki-loki-stack-test'
+  namespace: cnos-system
 data:
   test.sh: |
     #!/usr/bin/env bash
