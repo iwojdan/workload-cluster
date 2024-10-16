@@ -1,0 +1,41 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata: # kpt-merge: /otel-deployment-collector
+  name: otel-deployment-collector
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: 'kpt.dev|Kptfile|default|otel-deployment-collector'
+upstream:
+  type: git
+  git:
+    repo: https://github.com/matysiaq/catalog-orange-packages.git
+    directory: cnos-full-replication/otelcol-deployment-workload
+    ref: cnos-full-replication/otelcol-deployment-workload/v2.0.0
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/matysiaq/catalog-orange-packages.git
+    directory: cnos-full-replication/otelcol-deployment-workload
+    ref: cnos-full-replication/otelcol-deployment-workload/v2.0.0
+    commit: a9d70d99e0c943b789ae20f50b20ab4ea265f4a6
+info:
+  readinessGates:
+  - conditionType: config.injection.WorkloadCluster.workload-cluster
+  description: sample kpt package to deploy otel deployment collector to workload cluster
+pipeline:
+  mutators:
+  - name: PackageVariant.edge-clusters-deployment-collectors-workload-cluster-o-2897a6f7..0
+    image: gcr.io/kpt-fn/set-labels:v0.2.0
+    configMap:
+      nephio.org/region: us-west1
+      nephio.org/site-type: edge
+  - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+    configPath: apply-replacements.yaml
+  - image: gcr.io/kpt-fn/set-namespace:v0.4.1
+    configPath: cm-namespace.yaml
+status:
+  conditions:
+  - type: config.injection.WorkloadCluster.workload-cluster
+    status: "True"
+    message: injected resource "workload-cluster" from cluster
+    reason: ConfigInjected
